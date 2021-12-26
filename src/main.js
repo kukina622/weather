@@ -1,11 +1,11 @@
 import Vue from "vue";
 import App from "./App.vue";
 import vuetify from "./plugins/vuetify";
-import vueaxios from "vue-axios";
+import VueAxios from "vue-axios";
 import axios from "axios";
 
 Vue.config.productionTip = false;
-Vue.use(axios, vueaxios);
+Vue.use(VueAxios, axios);
 
 new Vue({
   vuetify,
