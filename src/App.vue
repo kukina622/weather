@@ -141,6 +141,11 @@ export default {
         }
       }
     }
+  },
+  created() {
+    const rnd = Math.ceil(Math.random() * this.cities.length);
+    this.selectedCity = this.cities[rnd];
+    this.changeCity();
   }
 };
 </script>
