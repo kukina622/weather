@@ -32,11 +32,8 @@
                 }}&deg;C
               </v-col>
               <v-col cols="5">
-                <v-img
-                  src="https://cdn.vuetifyjs.com/images/cards/sun.png"
-                  alt="Sunny image"
-                  width="92"
-                ></v-img>
+                <!-- 自製的組件 -->
+                <weatherIcon />
               </v-col>
             </v-row>
           </v-card-text>
@@ -65,8 +62,11 @@
 </template>
 
 <script>
+import weatherIcon from "@/components/weatherIcon";
+
 export default {
   name: "App",
+  components: { weatherIcon },
   data() {
     return {
       cities: [
