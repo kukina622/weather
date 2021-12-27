@@ -109,10 +109,7 @@ export default {
     async fetchWeatherData() {
       const today = new Date();
       const startTime = this.formatDatetime(today);
-      // 加6個小時
-      today.setHours(today.getHours() + 6);
-      const endTime = this.formatDatetime(today);
-      const weatherUrl = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${this.Authorization}&locationName=${this.selectedCity}&timeFrom=${startTime}&timeTo=${endTime}`;
+      const weatherUrl = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${this.Authorization}&locationName=${this.selectedCity}&timeFrom=${startTime}`;
       const { data } = await this.axios.get(weatherUrl);
       return data.records.location[0].weatherElement;
     },
