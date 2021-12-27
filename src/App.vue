@@ -4,12 +4,7 @@
       <v-container>
         <v-card class="mx-auto" max-width="400">
           <v-card-title>
-            <v-select
-              :items="cities"
-              label="選擇縣市"
-              v-model="selectedCity"
-              @change="changeCity"
-            />
+            <v-select :items="cities" label="選擇縣市" />
           </v-card-title>
         </v-card>
         <v-card class="mx-auto" max-width="400">
@@ -32,8 +27,7 @@
                 }}&deg;C
               </v-col>
               <v-col cols="5">
-                <!-- 自製的組件 -->
-                <weatherIcon :weatherCode="weatherCode" />
+                <img width="120" :src="require('@/assets/weather/1.svg')" />
               </v-col>
             </v-row>
           </v-card-text>
@@ -62,11 +56,8 @@
 </template>
 
 <script>
-import weatherIcon from "@/components/weatherIcon";
-
 export default {
   name: "App",
-  components: { weatherIcon },
   data() {
     return {
       cities: [
@@ -111,11 +102,7 @@ export default {
      * 取得weather API資料
      */
     async fetchWeatherData() {
-      const today = new Date();
-      const startTime = this.formatDatetime(today);
-      const weatherUrl = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=${this.Authorization}&locationName=${this.selectedCity}&timeFrom=${startTime}`;
-      const { data } = await this.axios.get(weatherUrl);
-      return data.records.location[0].weatherElement;
+      // write your code here
     },
     /**
      * 傳入的是一個Date物件
@@ -146,15 +133,7 @@ export default {
      */
     async changeCity() {
       this.changeTime();
-      const weatherElement = await this.fetchWeatherData();
-      for (let i = 0; i < weatherElement.length; i++) {
-        const { elementName, time } = weatherElement[i];
-        const { parameter } = time[0];
-        this.weatherData[elementName] = parameter.parameterName;
-        if (elementName === "Wx") {
-          this.weatherCode = parseInt(parameter.parameterValue);
-        }
-      }
+      // write your code here
     }
   },
   created() {
