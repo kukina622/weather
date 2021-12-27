@@ -93,9 +93,9 @@ export default {
         "嘉義市",
         "屏東縣"
       ],
-      Authorization: process.env.VUE_APP_AUTHORIZATION || "",
-      selectedCity: "",
-      fetchTime: "",
+      Authorization: process.env.VUE_APP_AUTHORIZATION || "", //API KEY
+      selectedCity: "", //被選擇的城市
+      fetchTime: "", //取得資料的時間
       weatherData: {
         MaxT: "", //最高溫
         MinT: "", //最低溫
@@ -103,10 +103,13 @@ export default {
         PoP: "", //降雨機率
         Wx: "" //天氣現象
       },
-      weatherCode: 0
+      weatherCode: 0 //天氣描述代碼
     };
   },
   methods: {
+    /**
+     * 取得weather API資料
+     */
     async fetchWeatherData() {
       const today = new Date();
       const startTime = this.formatDatetime(today);
@@ -114,11 +117,18 @@ export default {
       const { data } = await this.axios.get(weatherUrl);
       return data.records.location[0].weatherElement;
     },
+    /**
+     * 傳入的是一個Date物件
+     * 會將其轉會為yyyy-MM-ddThh:mm:ss格式的字串
+     */
     formatDatetime(datetime) {
       return new Date(datetime.toString().split("GMT")[0] + " UTC")
         .toISOString()
         .substr(0, 19);
     },
+    /**
+     * 更新時間
+     */
     changeTime() {
       const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const today = new Date();
@@ -129,6 +139,11 @@ export default {
       }`;
       this.fetchTime = `${week[today.getDay()]}, ${time}`;
     },
+    /**
+     * 當select改變被觸發
+     * 會去取得weather API的資料
+     * 並更新data裡的weatherData與 weatherCode
+     */
     async changeCity() {
       this.changeTime();
       const weatherElement = await this.fetchWeatherData();
