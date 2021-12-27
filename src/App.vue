@@ -33,7 +33,7 @@
               </v-col>
               <v-col cols="5">
                 <!-- 自製的組件 -->
-                <weatherIcon />
+                <weatherIcon :weatherCode="weatherCode" />
               </v-col>
             </v-row>
           </v-card-text>
@@ -102,7 +102,8 @@ export default {
         CI: "", //舒適度
         PoP: "", //降雨機率
         Wx: "" //天氣現象
-      }
+      },
+      weatherCode: 0
     };
   },
   methods: {
@@ -135,6 +136,9 @@ export default {
         const { elementName, time } = weatherElement[i];
         const { parameter } = time[0];
         this.weatherData[elementName] = parameter.parameterName;
+        if (elementName === "Wx") {
+          this.weatherCode = parseInt(parameter.parameterValue);
+        }
       }
     }
   }

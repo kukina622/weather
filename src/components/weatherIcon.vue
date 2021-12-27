@@ -1,18 +1,19 @@
 <template>
-  <img width="92" :src="getWeatherIcon" />
+  <img width="120" :src="getWeatherIcon" />
 </template>
 
 <script>
 export default {
   props: {
     weatherCode: {
-      type: Number
+      type: Number,
+      default: 0
     }
   },
   computed: {
     getWeatherIcon() {
       let weatherIcon = undefined;
-      switch (weatherCode) {
+      switch (this.weatherCode) {
         case 1:
           weatherIcon = require("@/assets/weather/1.svg");
           break;
@@ -37,6 +38,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>
