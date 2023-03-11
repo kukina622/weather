@@ -1,24 +1,4 @@
 # weather
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+記得先去[中央氣象局](https://opendata.cwb.gov.tw/)申請API token，再填入.env <br>
+API參考: https://opendata.cwb.gov.tw/dist/opendata-swagger.html
